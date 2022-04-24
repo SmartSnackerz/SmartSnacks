@@ -9,24 +9,27 @@
         android:id="@+id/nav_items"
         android:name="com.example.androidstudio.ItemFragment"
         android:label="@string/menu_yourItems"
-        tools:layout="@layout/fragment_item" />
+
+        tools:layout="@layout/fragment_item"
+
+    />
 
     <fragment
         android:id="@+id/nav_pantry"
         android:name="com.example.androidstudio.ItemFragment"
         android:label="@string/menu_pantry"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/pantry" />
 
     <fragment
         android:id="@+id/nav_necessities"
         android:name="com.example.androidstudio.ItemFragment"
         android:label="@string/menu_necessities"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/neccessitities" />
     <fragment
         android:id="@+id/nav_recipes"
         android:name="com.example.androidstudio.ItemFragment"
         android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/recipes" />
 
 
 
