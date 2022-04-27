@@ -1,6 +1,7 @@
 package com.example.androidstudio;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -35,8 +37,6 @@ import java.sql.Statement;
 
 
 public class MainActivity extends AppCompatActivity {
-
-
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -47,9 +47,12 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
         toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View v){
+                Log.d("myTag","abc2");
                 drawer.openDrawer(GravityCompat.START);
+                Log.d("myTag","abc");
             }
         });
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -58,18 +61,27 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 item.setChecked(true);
                 drawer.closeDrawer(GravityCompat.START);
+
                 switch (id)
                 {
                     case R.id.nav_pantry:
+                        setSupportActionBar(toolbar);
+                        toolbar.setTitle("Pantry");
                         replaceFragment(new PantryFragment());
                         break;
                     case R.id.nav_items:
+                        setSupportActionBar(toolbar);
+                        toolbar.setTitle("Items");
                         replaceFragment(new ItemsFragment());
                         break;
                     case R.id.nav_necessities:
+                        setSupportActionBar(toolbar);
+                        toolbar.setTitle("Necessities");
                         replaceFragment(new NecessitiesFragment());
                         break;
                     case R.id.nav_recipes:
+                        setSupportActionBar(toolbar);
+                        toolbar.setTitle("Recipes");
                         replaceFragment(new RecipesFragment());
                         break;
                     default:
