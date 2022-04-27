@@ -16,6 +16,7 @@ import com.example.androidstudio.ui.Necessities.NecessitiesFragment;
 import com.example.androidstudio.ui.Pantry.PantryFragment;
 import com.example.androidstudio.ui.Recipe.RecipesFragment;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -46,15 +47,14 @@ public class MainActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.navigation_view);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
-                Log.d("myTag","abc2");
+            public void onClick(View v) {
                 drawer.openDrawer(GravityCompat.START);
-                Log.d("myTag","abc");
             }
         });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 drawer.closeDrawer(GravityCompat.START);
 
-                switch (id)
-                {
+                switch (id) {
+
                     case R.id.nav_pantry:
                         setSupportActionBar(toolbar);
                         toolbar.setTitle("Pantry");
@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
     }
     //title page changing
-   //code goes here
+    //code goes here
 
     // the three dots that will do a drop down bar in main.xml
     @Override
@@ -120,13 +120,15 @@ public class MainActivity extends AppCompatActivity {
 
 //OUR CODE STARTS HERE.
 
-    //add item button pop up window
-    public void buttonPopupwindow(View v){
-        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View viewPopupwindow = layoutInflater.inflate(R.layout.popup_pantry,null);
-        PopupWindow popupwindow = new PopupWindow(viewPopupwindow,700,800, true);
 
-        popupwindow.showAtLocation(v, Gravity.CENTER, 0,0);
+
+    //add item button pop up window
+    public void buttonPopupwindowpantry(View v) {
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View viewPopupwindow = layoutInflater.inflate(R.layout.popup_pantry, null);
+        PopupWindow popupwindow = new PopupWindow(viewPopupwindow, 700, 800, true);
+
+        popupwindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
         //closing button
         Button close = (Button) viewPopupwindow.findViewById(R.id.button_cancel);
@@ -157,26 +159,26 @@ public class MainActivity extends AppCompatActivity {
         //TextView tx2 = (TextView) findViewById(R.id.textView2);
         //TextView tx3 = (TextView) findViewById(R.id.textView3);
 
-        try{
+        try {
             Database connectionHelper = new Database();
             connect = connectionHelper.connectionclass();
-            if(connect != null){
+            if (connect != null) {
                 String query = "SELECT * FROM Item";
                 Statement st = connect.createStatement();
                 ResultSet rs = st.executeQuery(query);
 
-                while(rs.next()){
+                while (rs.next()) {
                     //tx2.setText(rs.getString(0));
                     //tx3.setText(rs.getString(0));
                 }
-            }else{
+            } else {
                 ConnectionResult = "Check connection";
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
+
+        }
 
     }
-
-    }
-
 }
+
 
